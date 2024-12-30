@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Receipe</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+      .main_contaier {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+      }
+      .input {
+        border: 2px solid transparent;
+        width: 30rem;
+        height: 2.5em;
+        padding-left: 0.8em;
+        outline: none;
+        overflow: hidden;
+        background-color: #f3f3f3;
+        border-radius: 10px;
+        transition: all 0.5s;
+
+        &:hover,
+        &:focus {
+          border: 2px solid #4a9dec;
+          box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+          background-color: white;
+        }
+        &:focus{
+            box-shadow: none;
+        }
+      }
+
+      .textarea {
+        resize: none;
+        width: 100%;
+        max-width: 30rem;
+        min-width: 30rem;
+        height: 7rem;
+        min-height: 7rem;
+        max-height: 7rem;
+        padding: 12px;
+        border-radius: 12px;
+        border: 2.5px solid lightgrey;
+        outline: none;
+        transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        box-shadow: 0px 0px 20px -18px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 1rem;
+
+        &:hover,
+        &:focus {
+          border: 2px solid lightgrey;
+          box-shadow: 0px 0px 20px -17px;
+          border: 2px solid #4a9dec;
+          box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+          background-color: white;
+        }
+        &:focus {
+          border: 2px solid #4a9dec;
+          box-shadow: none;
+        }
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        &::placeholder{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+      }
+
+
+      button {
+        display: inline-block;
+        border-radius: 12px;
+        background-color: #4a9dec;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        font-size: 17px;
+        padding: 10px;
+        width: 31rem;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+        &:active{
+            transform: scale(0.95)
+        }
+        &:hover{
+            box-shadow: 0 0 10px #000000;
+        }
+      }
+
+      button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+
+      button span:after {
+        content: "»";
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -15px;
+        transition: 0.5s;
+      }
+
+      button:hover span {
+        padding-right: 15px;
+      }
+
+      button:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
+      .file-upload {
+        width: 31rem;
+        padding: 12px;
+        &:active{
+            transform: scale(0.98);
+        }
+      }
+
+      .file-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        background-color: #4a9dec;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+
+      .file-label:hover {
+        background-color: #007bff;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .file-input {
+        display: none;
+      }
+
+      .file-name {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #333;
+        text-align: center;
+        word-wrap: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_contaier">
+      <div class="R_name">
+        <label for="R_Name">Name</label><br />
+        <input class="input" name="Name" id="R_Name" />
+      </div>
+      <div class="R_description">
+        <label for="R_Des">Description</label><br />
+        <textarea class="textarea" name="Description" id="R_Des" placeholder="enter here..."></textarea>
+      </div>
+      <div class="R_ingreadiants">
+        <label for="R_Des">Ingreadiants</label><br />
+        <textarea class="textarea" name="Ingreadiants" id="R_Des" placeholder="enter here..."></textarea>
+      </div>
+      <div class="R_button">
+        
+      </div>
+      <div class="file-upload">
+        <label for="file" class="file-label">
+          <span>Choose File</span>
+          <span>&#8681;</span>
+          <!-- Down Arrow Icon -->
+        </label>
+        <input
+          type="file"
+          id="file"
+          class="file-input"
+          onchange="updateFileName(this)"
+        />
+        <div class="file-name" id="file-name">No file chosen</div>
+      </div>
+      <button type="submit">
+        <span>Submit</span>
+      </button>
+    </div>
+    <script>
+      function updateFileName(input) {
+        const fileNameElement = document.getElementById("file-name");
+        const fileName =
+          input.files.length > 0 ? input.files[0].name : "No file chosen";
+        fileNameElement.textContent = fileName;
+
+      }
+    </script>
+  </body>
+</html>
